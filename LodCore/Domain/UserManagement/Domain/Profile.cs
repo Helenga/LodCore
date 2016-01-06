@@ -7,19 +7,20 @@ namespace UserManagement.Domain
     public class Profile
     {
         public Profile(
-            int userId,
-            Uri bigPhotoUri,
-            Uri smallPhotoUri,
-            MailAddress email,
-            DateTime registrationTime,
-            Uri vkProfileUri,
-            string phoneNumber,
-            int studentAccessionYear,
-            string studyingDirection,
-            string instituteName,
-            string specialization)
+            int userId, 
+            Uri bigPhotoUri, 
+            Uri smallPhotoUri, 
+            MailAddress email, 
+            DateTime registrationTime, 
+            Uri vkProfileUri, 
+            string phoneNumber, 
+            int studentAccessionYear, 
+            string studyingDirection, 
+            string instituteName, 
+            string specialization, 
+            bool isHidden)
         {
-            Require.ZeroOrGreater(userId, nameof(userId));
+            Require.Positive(userId, nameof(userId));
             Require.NotNull(registrationTime, nameof(registrationTime));
             Require.NotNull(email, nameof(email));
             Require.NotEmpty(phoneNumber, nameof(phoneNumber));
@@ -34,6 +35,7 @@ namespace UserManagement.Domain
             StudyingDirection = studyingDirection;
             InstituteName = instituteName;
             Specialization = specialization;
+            IsHidden = isHidden;
         }
 
         protected Profile()
@@ -48,9 +50,9 @@ namespace UserManagement.Domain
 
         public virtual DateTime RegistrationTime { get; protected set; }
 
-        public virtual Uri VkProfileUri { get; protected set; }
+        public virtual Uri VkProfileUri { get; set; }
 
-        public virtual string PhoneNumber { get; protected set; }
+        public virtual string PhoneNumber { get; set; }
 
         public virtual int StudentAccessionYear { get; set; }
 
@@ -59,5 +61,7 @@ namespace UserManagement.Domain
         public virtual string InstituteName { get; set; }
 
         public virtual string Specialization { get; set; }
+
+        public virtual bool IsHidden { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace DataAccess.Mappings
             Property(user => user.RegistrationTime, mapper => mapper.Column("RegistrationTime"));
             Property(user => user.StudyingDirection, mapper => mapper.Column("StudyingDirection"));
             Property(user => user.StudentAccessionYear, mapper => mapper.Column("AccessionYear"));
+            Property(user => user.IsHidden, mapper => mapper.Column("IsHidden"));
         }
     }
 }

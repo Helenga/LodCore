@@ -15,14 +15,7 @@ namespace DataAccess
             var configuration = new Configuration();
             configuration.Configure();
             var modelMapper = new ModelMapper();
-            modelMapper.AddMapping<ProfileMap>();
-            modelMapper.AddMapping<UserMap>();
-            modelMapper.AddMapping<ProjectMap>();
-            modelMapper.AddMapping<EventMap>();
-            modelMapper.AddMapping<DeliveryMap>();
-            modelMapper.AddMapping<MailValidationRequestMap>();
-            modelMapper.AddMapping<ProjectMembershipMap>();
-            modelMapper.AddMapping<OrderMap>();
+            AddMappings(modelMapper);
             configuration.AddDeserializedMapping(modelMapper.CompileMappingForAllExplicitlyAddedEntities(), null);
 
             _factory = configuration.BuildSessionFactory();
@@ -33,6 +26,19 @@ namespace DataAccess
         public ISession OpenSession()
         {
             return _factory.OpenSession();
+        }
+
+        private static void AddMappings(ModelMapper modelMapper)
+        {
+            modelMapper.AddMapping<ProfileMap>();
+            modelMapper.AddMapping<UserMap>();
+            modelMapper.AddMapping<ProjectMap>();
+            modelMapper.AddMapping<EventMap>();
+            modelMapper.AddMapping<DeliveryMap>();
+            modelMapper.AddMapping<MailValidationRequestMap>();
+            modelMapper.AddMapping<ProjectMembershipMap>();
+            modelMapper.AddMapping<OrderMap>();
+            modelMapper.AddMapping<UserSettingsMap>();
         }
     }
 }
